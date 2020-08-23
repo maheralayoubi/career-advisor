@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <nav class="navbar p-0 bg-white border border-#D1D3D4 sticky-top d-flex justify-content-start">
+        <div class="navbar-brand text-primary font-weight-bold h3 ml-3">
+            キャリアオンライン
+        </div>
+        <p class="navbar-text text-secondary font-weight-light h4"> ログインするn</p>
+    </nav>
+
+    <div class="container">
+        <div class="row d-flex justify-content-center my-5">
+            <div class="mx-5 stepOn">
+                <p class="text-center pt-2">Step1</p>
+            </div>
+            <i class="fa fa-caret-right mt-2" style="font-size:24px; color:#D1D3D4"></i>
+            <div class="mx-5 stepOff">
+                <p class="text-center pt-2"> Step2 </p>
+            </div>
+            <i class="fa fa-caret-right mt-2 bg-white" style="font-size:24px; color:#D1D3D4"></i>
+            <div class="mx-5 stepOff">
+                <p class="text-center pt-2"> Step3 </p>
+            </div>
+        </div>
+
+
+        <div class="column w-50 mx-auto">
+            <h4 class="text-center">アカウント情報を入力してください</h4>
+            <form action="{% url 'signup1' %}" method="POST" class="needs-validation" id="form1">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>
+                        Name
+                    </label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Please Enter Your Name" required>
+                    <div class="invalid-feedback">
+                        Name is required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        E-mail Address
+                    </label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+                    <div class="invalid-feedback">
+                        Valid E-mail address is required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Password
+                    </label>
+                    <input type="password" id="inputpassword" name="inputpassword" class="form-control" placeholder="please enter a password"
+                        required>
+                    <div class="invalid-feedback">
+                        Valid password is required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Invitation Code
+                    </label>
+                    <input type="text" id="code" name="code" class="form-control" placeholder="Please Enter an Invitation Code"
+                        required>
+                </div>
+                <div class="d-flex flex-column w-25 mx-auto">
+                    <button type="submit" class="btn btn-outline-secondary">ログインする</button>
+                    <a href="{% url 'login' %}" class="text-dark mx-auto mt-2"><u>Go back</u></a>
+                </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+
+        // document.getElementById('form1').onsubmit = function () {
+        //     window.location.href = "{% url 'signup2' 6 %}";
+        //     return false;
+        // }
+
+
+    </script>
+</body>
+
+</html>

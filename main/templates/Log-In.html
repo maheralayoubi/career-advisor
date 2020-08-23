@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Log In</title>
+</head>
+
+<body>
+    <nav class="navbar p-0 bg-white border border-#D1D3D4 sticky-top d-flex justify-content-start">
+        <div class="navbar-brand text-primary font-weight-bold h3 ml-3">
+            キャリアオンライン
+        </div>
+        <p class="navbar-text text-secondary font-weight-light h4"> ログインするn</p>
+    </nav>
+    <div class="d-flex">
+        <div class="column mx-5 my-5">
+            <div class="mb-5">
+                HERE ARE THE MEMBERS,
+            </div>
+            <form id="logInform" method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="column w-100">
+                    <label>Mail Address</label>
+                    <input type="email" class="form-control" name= "inputemail" id="inputEmail" placeholder="you@example.com" required
+                        autofocus>
+                    <div class="invalid-feedback">
+                        Valid E-mail address is required.
+                    </div>
+                </div>
+                <div class="column w-100 mt-4">
+                    <label>Password</label>
+                    <input type="password" name="inputpassword" id="inputpassword" class="form-control" placeholder="please enter a password"
+                        required>
+                    <div class="invalid-feedback">
+                        Valid password is required.
+                    </div>
+                </div>
+                <div class="column mt-4">
+                    <button type="submit" class="btn btn-outline-secondary">ログインする</button>
+                    <a class="nav-link pl-0" href="{% url 'resetPass' %}">Click here if you forget your password</a>
+                </div>
+            </form>
+        </div>
+
+        <div id="vl" class="mx-5 my-5"></div>
+
+        <div class="column mx-5 my-5">
+            <p>
+                New Members
+            </p>
+            <p>
+                If you are using it for first time, please register as member by clicking the button below
+            </p>
+            <button type="button" class="btn btn-outline-secondary" id="Sign-up">New member registration</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("Sign-up").onclick = function () {
+            window.location.href = "{% url 'signup1' %}"
+        }
+
+        // document.getElementById("logInform").onsubmit = function(){
+        //     window.location.href = "{% url 'home' %}"
+        //     return false;
+        // }
+    </script>
+
+</html>

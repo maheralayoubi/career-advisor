@@ -1,0 +1,329 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Edit Lesson</title>
+</head>
+
+<body>
+    <nav
+        class="navbar navbar-expand-sm p-0 navbar-light bg-white border border-#D1D3D4 sticky-top d-flex justify-content-start">
+        <div class="navbar-brand text-primary font-weight-bold h3 ml-3">
+            キャリアオンライン
+        </div>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarmenu" class="collapse navbar-collapse">
+            <div class="input-group w-25">
+                <input type="text" class="form-control" placeholder="元教師またはレッスンを見つける"
+                    aria-label="Text input with segmented dropdown button" onkeyup="searchCard()" id="searchbar">
+                <div class="input-group-append">
+                    <button type="button" class="btn dropdown-toggle btn-nav" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <button type="button" class="btn btn-nav">
+                        <i class="fa fa-search" style="color: orange;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="ml-auto mr-2">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><i class='fas fa-book-open mt-1 ml-4' style='font-size:30px; color: orange;'
+                            id="lessonGo"></i>
+                    </li>
+                    <li class="nav-item"><i class="material-icons ml-4"
+                            style="font-size:36px; color: orange;">mail_outline</i></li>
+                    <li class="nav-item"><img src="e.jpg" class="card-img-top rounded-circle img-nav" alt="..."></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="ml-5 w-75" style="min-width: 1000px; max-width: 1000px">
+        <p class="font-weight-bolder ml-3 mt-3">レッスンを編集 <!--edit lesson--></p>
+        <hr class="bg-warning ml-3">
+        <form class="ml-3 bg-white pb-4">
+            <div class="row ml-3">
+                <div class="" style="width: 270px;">
+                    <h3 class="text-warning">Step 1</h3>
+                    <div class="row ml-1">
+                        <div class="orgLine bg-warning"></div>
+                        <p class="font-weight-bolder ml-1">レッスンタイトル <!-- lesson title--></p>
+                    </div>
+                    <p>*キャリアについて <!-- about career--></p>
+                    <input type="text" class="form-control w-75" id="job-name" placeholder="入ってください">
+                </div>
+
+                <div class="sepLine mt-1"></div>
+
+                <div class="ml-4" style="width: 190px;">
+                    <h3 class="text-warning">Step 2</h3>
+                    <div class="row ml-1">
+                        <div class="orgLine bg-warning"></div>
+                        <p class="font-weight-bolder ml-1">スケジュール</p>
+                    </div>
+
+                    <p class="text-secondary">曜日 <!--Day of the week--></p>
+                    <div class="input-group mb-3 w-50">
+                        <select class="custom-select" id="inputGroupSelect02">
+                            <option selected>日 <!--day--></option>
+                            <option value="1">月曜</option>
+                            <option value="2">火曜日</option>
+                            <option value="3">水曜日</option>
+                            <option value="4">木曜日</option>
+                            <option value="5">金曜日</option>
+                            <option value="6">土曜日</option>
+                            <option value="7">日曜日</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sepLine mt-1"></div>
+
+                <div class="ml-4" style="width: 190px;">
+                    <h3 class="text-warning">Step 3</h3>
+                    <div class="row ml-1">
+                        <div class="orgLine bg-warning"></div>
+                        <p class="font-weight-bolder ml-1">始まる時間</p>
+                    </div>
+                    <p class="text-secondary">開始する時間</p>
+                    <div class="row ml-1">
+                        <div class="input-group mb-3 w-25">
+                            <select class="custom-select" id="inputGroupSelect02">
+                                <option selected>時</option>
+                                <option value="0">0時</option>
+                                <option value="1">1時</option>
+                                <option value="2">2時</option>
+                                <option value="3">3時</option>
+                                <option value="4">4時</option>
+                                <option value="5">5時</option>
+                                <option value="6">6時</option>
+                                <option value="7">7時</option>
+                                <option value="8">8時</option>
+                                <option value="9">9時</option>
+                                <option value="10">10時</option>
+                                <option value="11">11時</option>
+                                <option value="12">12時</option>
+                                <option value="13">13時</option>
+                                <option value="14">14時</option>
+                                <option value="15">15時</option>
+                                <option value="16">16時</option>
+                                <option value="17">17時</option>
+                                <option value="18">18時</option>
+                                <option value="19">19時</option>
+                                <option value="20">20時</option>
+                                <option value="21">21時</option>
+                                <option value="22">22時</option>
+                                <option value="23">23時</option>
+
+                            </select>
+                        </div>
+                        <div class="input-group mb-3 w-25">
+                            <select class="custom-select" id="inputGroupSelect02">
+                                <option selected>分</option>
+                                <option value="00">00分</option>
+                                <option value="01">01分</option>
+                                <option value="02">02分</option>
+                                <option value="03">03分</option>
+                                <option value="04">04分</option>
+                                <option value="05">05分</option>
+                                <option value="06">06分</option>
+                                <option value="07">07分</option>
+                                <option value="08">08分</option>
+                                <option value="09">09分</option>
+                                <option value="10">10分</option>
+                                <option value="11">11分</option>
+                                <option value="12">12分</option>
+                                <option value="13">13分</option>
+                                <option value="14">14分</option>
+                                <option value="15">15分</option>
+                                <option value="16">16分</option>
+                                <option value="17">17分</option>
+                                <option value="18">18分</option>
+                                <option value="19">19分</option>
+                                <option value="20">20分</option>
+                                <option value="21">21分</option>
+                                <option value="22">22分</option>
+                                <option value="23">23分</option>
+                                <option value="24">24分</option>
+                                <option value="25">25分</option>
+                                <option value="26">26分</option>
+                                <option value="27">27分</option>
+                                <option value="28">28分</option>
+                                <option value="29">29分</option>
+                                <option value="30">30分</option>
+                                <option value="31">31分</option>
+                                <option value="32">32分</option>
+                                <option value="33">33分</option>
+                                <option value="34">34分</option>
+                                <option value="35">35分</option>
+                                <option value="36">36分</option>
+                                <option value="37">37分</option>
+                                <option value="38">38分</option>
+                                <option value="39">39分</option>
+                                <option value="40">40分</option>
+                                <option value="41">41分</option>
+                                <option value="42">42分</option>
+                                <option value="43">43分</option>
+                                <option value="44">44分</option>
+                                <option value="45">45分</option>
+                                <option value="46">46分</option>
+                                <option value="47">47分</option>
+                                <option value="48">48分</option>
+                                <option value="49">49分</option>
+                                <option value="50">50分</option>
+                                <option value="51">51分</option>
+                                <option value="52">52分</option>
+                                <option value="53">53分</option>
+                                <option value="54">54分</option>
+                                <option value="55">55分</option>
+                                <option value="56">56分</option>
+                                <option value="57">57分</option>
+                                <option value="58">58分</option>
+                                <option value="59">59分</option>
+                                <option value="60">60分</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sepLine mt-1"></div>
+
+                <div class="ml-4" style="width: 190px;">
+                    <h3 class="text-warning">Step 4</h3>
+                    <div class="row ml-1">
+                        <div class="orgLine bg-warning"></div>
+                        <p class="font-weight-bolder ml-1">終了時間</p>
+                    </div>
+                    <p class="text-secondary">終了する時間</p>
+                    <div class="row ml-1">
+                        <div class="input-group mb-3 w-25">
+                            <select class="custom-select" id="inputGroupSelect02">
+                                <option selected>時</option>
+                                <option value="0">0時</option>
+                                <option value="1">1時</option>
+                                <option value="2">2時</option>
+                                <option value="3">3時</option>
+                                <option value="4">4時</option>
+                                <option value="5">5時</option>
+                                <option value="6">6時</option>
+                                <option value="7">7時</option>
+                                <option value="8">8時</option>
+                                <option value="9">9時</option>
+                                <option value="10">10時</option>
+                                <option value="11">11時</option>
+                                <option value="12">12時</option>
+                                <option value="13">13時</option>
+                                <option value="14">14時</option>
+                                <option value="15">15時</option>
+                                <option value="16">16時</option>
+                                <option value="17">17時</option>
+                                <option value="18">18時</option>
+                                <option value="19">19時</option>
+                                <option value="20">20時</option>
+                                <option value="21">21時</option>
+                                <option value="22">22時</option>
+                                <option value="23">23時</option>
+
+                            </select>
+                        </div>
+                        <div class="input-group mb-3 w-25">
+                            <select class="custom-select" id="inputGroupSelect02">
+                                <option selected>分</option>
+                                <option value="00">00分</option>
+                                <option value="01">01分</option>
+                                <option value="02">02分</option>
+                                <option value="03">03分</option>
+                                <option value="04">04分</option>
+                                <option value="05">05分</option>
+                                <option value="06">06分</option>
+                                <option value="07">07分</option>
+                                <option value="08">08分</option>
+                                <option value="09">09分</option>
+                                <option value="10">10分</option>
+                                <option value="11">11分</option>
+                                <option value="12">12分</option>
+                                <option value="13">13分</option>
+                                <option value="14">14分</option>
+                                <option value="15">15分</option>
+                                <option value="16">16分</option>
+                                <option value="17">17分</option>
+                                <option value="18">18分</option>
+                                <option value="19">19分</option>
+                                <option value="20">20分</option>
+                                <option value="21">21分</option>
+                                <option value="22">22分</option>
+                                <option value="23">23分</option>
+                                <option value="24">24分</option>
+                                <option value="25">25分</option>
+                                <option value="26">26分</option>
+                                <option value="27">27分</option>
+                                <option value="28">28分</option>
+                                <option value="29">29分</option>
+                                <option value="30">30分</option>
+                                <option value="31">31分</option>
+                                <option value="32">32分</option>
+                                <option value="33">33分</option>
+                                <option value="34">34分</option>
+                                <option value="35">35分</option>
+                                <option value="36">36分</option>
+                                <option value="37">37分</option>
+                                <option value="38">38分</option>
+                                <option value="39">39分</option>
+                                <option value="40">40分</option>
+                                <option value="41">41分</option>
+                                <option value="42">42分</option>
+                                <option value="43">43分</option>
+                                <option value="44">44分</option>
+                                <option value="45">45分</option>
+                                <option value="46">46分</option>
+                                <option value="47">47分</option>
+                                <option value="48">48分</option>
+                                <option value="49">49分</option>
+                                <option value="50">50分</option>
+                                <option value="51">51分</option>
+                                <option value="52">52分</option>
+                                <option value="53">53分</option>
+                                <option value="54">54分</option>
+                                <option value="55">55分</option>
+                                <option value="56">56分</option>
+                                <option value="57">57分</option>
+                                <option value="58">58分</option>
+                                <option value="59">59分</option>
+                                <option value="60">60分</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline-secondary d-block mx-auto mt-5" id="create-lesson"
+                style="width: 200px;">レッスンを作成する</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

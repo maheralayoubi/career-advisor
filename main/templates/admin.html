@@ -1,0 +1,537 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles_admin.css' %}">
+    <title>Lesson Managment</title>
+</head>
+
+<body id='admin'>
+    <header class="ml-5 mt-5 h3">
+        Service Logo
+    </header>
+
+
+    <div class="list-group list-group-horizontal ml-5 mt-5 w-75 navdiv">
+        <a class="list-group-item list-group-item-action ml-3 text-center" data-toggle="list" href="#lessonManagment"
+            role="tab">Lesson Managment</a>
+        <a class="list-group-item list-group-item-action ml-3 text-center" data-toggle="list"
+            href="#instructorManagmentdiv" role="tab">Instructor Management</a>
+        <a class="list-group-item list-group-item-action ml-3 text-center" data-toggle="list" href="#studentManagmentdiv"
+            role="tab">Students Management</a>
+        <a class="list-group-item list-group-item-action ml-3 text-center" data-toggle="list" href="#chatManagment"
+            role="tab">Chat managment</a>
+        <a class="list-group-item list-group-item-action ml-3 text-center" data-toggle="list" href="#smallLessons"
+            role="tab">Small Lesson managment</a>
+    </div>
+
+    <div class="tab-content mt-5">
+        <!-- lesson managment 3 tables -->
+        <div class="tab-pane " id="lessonManagment" role="tabpanel">
+            <div class="collapse">
+                <ul class="list-group list-group-horizontal-sm exportdiv ml-5">
+                    <li class="list-group-item list-group-item-action export pb">Total Sales</li>
+                    <li class="list-group-item export disabled">987.645</li>
+                </ul>
+
+                <ul class="list-group list-group-horizontal-sm exportdiv mt-2 ml-5">
+                    <li class="list-group-item list-group-item-action exportsales">Monthly Sales</li>
+                    <li class="list-group-item exportsales disabled">987.645</li>
+                </ul>
+            </div>
+
+
+            <div class="list-group list-group-horizontal lessonsdetails mt-3 w-75 ml-5">
+                <a class="list-group-item list-group-item-action" data-toggle="list" href="#completedLessonsdiv"
+                    role="tab" id="collabse">All completed lessons</a>
+                <a class="list-group-item disabled">{{len_completed_lessons}}</a>
+                <a class="list-group-item list-group-item-action ml-5" data-toggle="list" href="#lessonsInProgressdiv"
+                    role="tab" id="d">Lessons on progress</a>
+                <a class="list-group-item disabled"> {{len_inprogress_lessons}} </a>
+                <a class="list-group-item list-group-item-action ml-5" data-toggle="list" href="#lessonsToBeStarteddiv"
+                    role="tab">Lessons to be started</a>
+                <a class="list-group-item disabled">{{len_tobe_started_lessons}}</a>
+            </div>
+
+            <div class="tab-content">
+                <!-- completed lesson table -->
+                <div class="tab-pane w-100" id="completedLessonsdiv" role="tabpanel">
+                    <table class="table table-striped" id=CompletedLessons>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Lesson Name</th>
+                                <th>Instructor Name</th>
+                                <th>Student Name</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tbody>
+                                {% for lesson in completed_lessons %}
+                                <tr>
+                                    <td scope="row">{{lesson.Date}}</td>
+                                    <td>{{lesson.title}}</td>
+                                    <td>{{lesson.instructor.name}}</td>
+                                    <td>{{lesson.student.name}}</td>
+    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- lessons in progress table -->
+                <div class="tab-pane" id="lessonsInProgressdiv" role="tabpanel">
+                    <table class="table table-striped" id="lessonsInProgress">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Lesson Name</th>
+                                <th scope="col">Instructor Name</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Elapsed Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tbody>
+                                {% for lesson in inprogress_lessons %}
+                                <tr>
+                                    <td scope="row">{{lesson.Date}}</td>
+                                    <td> {{lesson.title}} </td>
+                                    <td>{{lesson.instructor.name}}</td>
+                                    <td>{{lesson.student.name}}</td>
+                                    <td> time elapsed</td>
+    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- lessons to be started  -->
+                <div class="tab-pane" id="lessonsToBeStarteddiv" role="tabpanel">
+                    <table class="table table-striped" id="lessonsToBeStarted">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Lesson Name</th>
+                                <th>Instructor Name</th>
+                                <th>Student Name</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lesson in tobe_started_lessons %}
+                            <tr>
+                                <td scope="row">{{lesson.Date}}</td>
+                                <td> {{lesson.title}} </td>
+                                <td>{{lesson.instructor.name}}</td>
+                                <td>{{lesson.student.name}}</td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane w-100 blockstyle" id="instructorManagmentdiv" role="tabpanel">
+            <input id="searchinstructor" class="search" type="text" placeholder="Instructor name search area"
+                aria-label="Search" onkeyup="searchInstructor()">
+
+            
+            
+            <table class="table table-striped ml-1" id="instructorManagment">
+                <thead>
+                    <tr>
+                        <th>Instructor Name</th>
+                        <th>Last Login</th>
+                        <th>Email Address</th>
+                        <th>Block User</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ins in instructors %}
+                    <tr>
+                        <td> <a href="{% url 'instructor_page' ins.Id %}">{{ins.name}}</a></td>
+                        <td>{{ins.blocked}}</td>
+                        <td>{{ins.email}}</td>
+                        <td>
+                            <label class="switch">
+                                <a href="{% url 'block_instructor' ins.Id %}" >
+                                {% if ins.blocked %}
+                                    <input type="checkbox" checked >
+
+                                {% else %}
+                                    <input type="checkbox" >
+                                {% endif %}
+                                <span class="slider round"  ></span>
+                            </a>
+                            </label>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane blockstyle" id="studentManagmentdiv" role="tabpanel">
+            <input id="searchstudents" class="search" type="text" placeholder="Student name search area"
+            aria-label="Search" onkeyup="searchStudent()">
+            <table class="table table-striped ml-1" id='studentManagment'>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Last Login</th>
+                        <th>Email Address</th>
+                        <th>Block User</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stu in students %}
+                    <tr>
+                        <td><a href="{% url 'student_page' stu.Id %}" >{{stu.name}}</a></td>
+                        <td>{{stu.age}}</td>
+                        <td>{{stu.email}}</td>
+                        <td>
+                            <label class="switch">
+                                <a href="{% url 'block_student' stu.Id %}" >
+                                {% if stu.blocked %}
+                                    <input type="checkbox" checked >
+
+                                {% else %}
+                                    <input type="checkbox" >
+                                {% endif %}
+                                <span class="slider round"  ></span>
+                            </a>
+                            </label>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane " id="chatManagment" role="tabpanel">
+            <input id="searchboth" class="search" type="text" placeholder="Instructor and Student Name Search Area"
+            aria-label="Search" onkeyup="searchBoth()">
+            <table class="table table-striped ml-1">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Instructor Name</th>
+                        <th>Most Recent time</th>
+                        <th>Latest Messages</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>講師 太郎</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>...</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane" id="smallLessons" role="tabpanel">
+            <div class="collapse">
+                <ul class="list-group list-group-horizontal-sm exportdiv ml-5">
+                    <li class="list-group-item list-group-item-action export pb">Total Sales</li>
+                    <li class="list-group-item export disabled">987.645</li>
+                </ul>
+
+                <ul class="list-group list-group-horizontal-sm exportdiv mt-2 ml-5">
+                    <li class="list-group-item list-group-item-action exportsales">Monthly Sales</li>
+                    <li class="list-group-item exportsales disabled">987.645</li>
+                </ul>
+            </div>
+
+            <div class="list-group list-group-horizontal lessonsdetails mt-3 w-75 ml-5">
+                <a class="list-group-item list-group-item-action" data-toggle="list" href="#smallcompletedLessonsdiv"
+                    role="tab" id="smallLessonCollabse">All completed lessons</a>
+                <a class="list-group-item disabled">987.645</a>
+                <a class="list-group-item list-group-item-action ml-5" data-toggle="list"
+                    href="#smalllessonsInProgressdiv" role="tab" id="smalld">Lessons on progress</a>
+                <a class="list-group-item disabled">987.645</a>
+                <a class="list-group-item list-group-item-action ml-5" data-toggle="list"
+                    href="#smalllessonsToBeStarteddiv" role="tab">Lessons to be started</a>
+                <a class="list-group-item disabled">987.645</a>
+            </div>
+
+            <div class="tab-content">
+                <!-- completed lesson table -->
+                <div class="tab-pane w-100" id="smallcompletedLessonsdiv" role="tabpanel">
+                    <table class="table table-striped" id=smallCompletedLessons>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Lesson Name</th>
+                                <th>Instructor Name</th>
+                                <th>Student Name</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- lessons in progress table -->
+                <div class="tab-pane" id="smalllessonsInProgressdiv" role="tabpanel">
+                    <table class="table table-striped" id='smalllessonsInProgress'>
+                        <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Lesson Name</th>
+                                <th scope="col">Instructor Name</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Elapsed Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>something</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- lessons to be started  -->
+                <div class="tab-pane" id="smalllessonsToBeStarteddiv" role="tabpanel">
+                    <table class="table table-striped" id="smalllessonsToBeStarted">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Lesson Name</th>
+                                <th>Instructor Name</th>
+                                <th>Student Name</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        document.getElementById('collabse').onclick = function () {
+            $('.collapse').collapse('toggle');
+        }
+
+        document.getElementById('d').onclick = function () {
+            $('.collapse').collapse('hide');
+        }
+
+        var CompletedLessons = document.getElementById('CompletedLessons').getElementsByTagName('tbody')[0];
+        var lessonsInProgress = document.getElementById('lessonsInProgress').getElementsByTagName('tbody')[0];
+        var lessonsToBeStarted = document.getElementById('lessonsToBeStarted').getElementsByTagName('tbody')[0];
+        for (var row of CompletedLessons.rows) {
+            (row.cells[1]).addEventListener('click', function () {
+                window.location.href = "{% url 'lesson_page' %}";
+            })
+        }
+
+        for (var row of lessonsInProgress.rows) {
+            (row.cells[1]).addEventListener('click', function () {
+                window.location.href = "{% url 'lesson_page' %}";
+            })
+        }
+
+        for (var row of lessonsToBeStarted.rows) {
+            (row.cells[1]).addEventListener('click', function () {
+                window.location.href = "{% url 'lesson_page' %}";
+            })
+        }
+
+        document.getElementById('smallLessonCollabse').onclick = function () {
+            $('.collapse').collapse('toggle');
+        }
+
+        document.getElementById('smalld').onclick = function () {
+            $('.collapse').collapse('hide');
+        }
+
+
+        // accessing instructor profile page when clicking
+        var smallCompletedLessons = document.getElementById('smallCompletedLessons').getElementsByTagName('tbody')[0];
+        var smalllessonsInProgress = document.getElementById('smalllessonsInProgress').getElementsByTagName('tbody')[0];
+        var smalllessonsToBeStarted = document.getElementById('smalllessonsToBeStarted').getElementsByTagName('tbody')[0];
+        for (var row of smallCompletedLessons.rows) {
+            (row.cells[1]).addEventListener('click', function () {
+                window.location.href = "{% url 'small_lesson_page' %}";
+            })
+        }
+
+        for (var row of smalllessonsInProgress.rows) {
+            (row.cells[1]).addEventListener('click', function () {
+                window.location.href = "{% url 'small_lesson_page' %}";
+            })
+        }
+
+        for (var row of smalllessonsToBeStarted.rows) {
+            (row.cells[1]).addEventListener('click', function () {
+                window.location.href = "{% url 'small_lesson_page' %}";
+            })
+        }
+
+        // accessing instructor profile page when clicking
+        // var instructor = document.getElementById('instructorManagment').getElementsByTagName('tbody')[0];
+        // for (var row of instructor.rows) {
+        //     (row.cells[0]).addEventListener('click', function () {
+        //         window.location.href = "";
+        //         console.log(this);
+        //     })
+        // }
+
+        // accessing students profile page when clicking on the name
+        // var student = document.getElementById('studentManagment').getElementsByTagName('tbody')[0];
+        // for (var row of student.rows) {
+        //     (row.cells[0]).addEventListener('click', function () {
+        //         window.location.href = "";
+        //     })
+        // }
+
+        function searchStudent() {
+            var input = document.getElementById("searchstudents");
+            var filter = input.value.toUpperCase();
+
+            var myTable = document.getElementById('studentManagment');
+            var tr = myTable.getElementsByTagName('tr');
+
+            for (var i = 0; i < tr.length; i++) {
+                var td = tr[i].getElementsByTagName('td')[0];
+
+                if (td) {
+                    var textvalue = td.textContent || td.innerHTML;
+                    if (textvalue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    }
+                    else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function searchInstructor() {
+            var input = document.getElementById("searchinstructor");
+            var filter = input.value.toUpperCase();
+
+            var myTable = document.getElementById('instructorManagment');
+            var tr = myTable.getElementsByTagName('tr');
+
+            for (var i = 0; i < tr.length; i++) {
+                var td = tr[i].getElementsByTagName('td')[0];
+
+                if (td) {
+                    var textvalue = td.textContent || td.innerHTML;
+                    if (textvalue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    }
+                    else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function searchBoth() {
+            var input = document.getElementById("searchboth");
+            var filter = input.value.toUpperCase();
+
+            var myTable = document.getElementById('chatManagment');
+            var tr = myTable.getElementsByTagName('tr');
+
+            for (var i = 0; i < tr.length; i++) {
+                var td = tr[i].getElementsByTagName('td')[0];
+
+                if (td) {
+                    var textvalue = td.textContent || td.innerHTML;
+                    if (textvalue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    }
+                    else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        
+        // function block_user(id){
+        //     // alert('worked');
+        //     $.ajax({
+        //         url: "",
+        //         data: {
+        //             'id':id,
+                    
+        //         },
+        //         dataType: 'json',
+        //         success: function (data) {
+        //             if (data.is_blocked) {
+        //                 alert("blocked");
+        //             }else{
+        //                 alert("not blocked");
+        //             }
+        //         },
+        //         error: function(data){
+        //             alert("fail");
+        //         }
+
+        //     });
+        //     alert("after");
+
+        // }
+
+    </script>
+
+</body>
+
+</html>
